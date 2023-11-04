@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/invitation")
+@RequestMapping("invitation")
 public class UserInvitationController {
 
     private final UserInvitationService userInvitationService;

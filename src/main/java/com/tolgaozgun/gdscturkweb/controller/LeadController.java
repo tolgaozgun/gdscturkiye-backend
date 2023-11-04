@@ -19,7 +19,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/leads")
+@RequestMapping("leads")
 public class LeadController {
 
     private final LeadService leadService;

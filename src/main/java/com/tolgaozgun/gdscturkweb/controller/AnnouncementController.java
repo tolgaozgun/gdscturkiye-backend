@@ -18,7 +18,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/announcements")
+@RequestMapping("announcements")
 public class AnnouncementController {
 
     private final AnnouncementService announcementService;

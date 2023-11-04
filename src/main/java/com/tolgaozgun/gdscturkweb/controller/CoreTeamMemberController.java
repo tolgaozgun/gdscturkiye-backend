@@ -21,7 +21,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/core-team-members")
+@RequestMapping("core-team-members")
 public class CoreTeamMemberController {
 
     private final CoreTeamMemberService coreTeamMemberService;

@@ -17,7 +17,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/email-verification")
+@RequestMapping("email-verification")
 public class EmailVerificationController {
 
     private final EmailVerificationService emailVerificationService;

@@ -19,7 +19,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/core-teams")
+@RequestMapping("core-teams")
 public class CoreTeamController {
 
     private final CoreTeamService coreTeamService;

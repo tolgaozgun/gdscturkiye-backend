@@ -17,7 +17,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/questions")
+@RequestMapping("questions")
 public class QuestionController {
 
     private final QuestionService questionService;

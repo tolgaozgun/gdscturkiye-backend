@@ -17,7 +17,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/googlers")
+@RequestMapping("googlers")
 public class GooglerController {
 
     private final GooglerService googlerService;

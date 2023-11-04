@@ -15,7 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/buddy-teams")
+@RequestMapping("buddy-teams")
 public class BuddyTeamController {
 
     private final BuddyTeamService buddyTeamService;
