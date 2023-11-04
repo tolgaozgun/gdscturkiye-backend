@@ -31,6 +31,15 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- h2 -->
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<!-- h2 end -->
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
