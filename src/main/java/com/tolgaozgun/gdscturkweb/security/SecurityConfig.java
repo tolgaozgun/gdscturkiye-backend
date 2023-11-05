@@ -26,16 +26,16 @@ public class SecurityConfig {
 	private static final String[] AUTH_WHITELIST = {
 			"/v3/api-docs/**",
 			"/swagger-ui/**",
-			"/api/v1/auth/login",
-			"/api/v1/email-verification/verify",
-			"/api/v1/email-verification/resend",
-			"/api/v1/auth/register",
-			"/api/v1/auth/register/lead",
-			"/api/v1/auth/register/core-team",
-			"/api/v1/auth/register/facilitator",
-			"/api/v1/auth/register/googler",
-			"/api/v1/auth/register/admin",
-			"/api/v1/universities",
+			"/auth/login",
+			"/email-verification/verify",
+			"/email-verification/resend",
+			"/auth/register",
+			"/auth/register/lead",
+			"/auth/register/core-team",
+			"/auth/register/facilitator",
+			"/auth/register/googler",
+			"/auth/register/admin",
+			"/universities",
 	};
 
 	@Bean
