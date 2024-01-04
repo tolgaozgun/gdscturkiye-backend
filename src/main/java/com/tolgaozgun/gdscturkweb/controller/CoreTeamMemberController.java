@@ -26,7 +26,6 @@ public class CoreTeamMemberController {
 
     private final CoreTeamMemberService coreTeamMemberService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCoreTeamMembers() {
         try {
@@ -38,7 +37,6 @@ public class CoreTeamMemberController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( consumes = MediaType.APPLICATION_JSON_VALUE, path = "/by-university/{universityId}")
     public ResponseEntity<Object> getAllCoreTeamMembersByUniversity(@PathVariable Long universityId) {
         try {
@@ -49,7 +47,6 @@ public class CoreTeamMemberController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "create")
     public ResponseEntity<Object> createCoreTeamMember(@NotNull @RequestBody CoreTeamRegisterRequest coreTeamRegisterRequest) {
         try {
@@ -61,7 +58,6 @@ public class CoreTeamMemberController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "dashboard")
     public ResponseEntity<Object> getCurrentLeadDashboard() {
         try {

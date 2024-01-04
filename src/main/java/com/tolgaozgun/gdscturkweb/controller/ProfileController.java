@@ -21,7 +21,6 @@ public class ProfileController {
 
     private final ProfileService profileService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/lead")
     public ResponseEntity<Object> updateLeadProfileByLead(@Valid @RequestBody UpdateLeadProfileByLeadRequest
                                                                       updateLeadProfileByLeadRequest) {
@@ -34,7 +33,6 @@ public class ProfileController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/core-team")
     public ResponseEntity<Object> updateCoreTeamProfileByCore(@Valid @RequestBody UpdateCoreTeamMemberProfileByMemberRequest
                                                                   updateCoreTeamMemberProfileByMemberRequest) {
@@ -46,7 +44,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/facilitator")
     public ResponseEntity<Object> updateFacilitatorProfile(@Valid @RequestBody UpdateFacilitatorProfileByFacilitatorRequest
                                                                    updateFacilitatorProfileByFacilitatorRequest) {
@@ -58,7 +55,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/googler")
     public ResponseEntity<Object> updateGooglerProfile(@Valid @RequestBody UpdateGooglerProfileByGooglerRequest
                                                                    updateGooglerProfileByGooglerRequest) {
@@ -71,7 +67,6 @@ public class ProfileController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/user")
     public ResponseEntity<Object> updateUserProfile(@Valid @RequestBody UpdateUserProfileByUserRequest
                                                                    updateUserProfileByUserRequest) {
@@ -83,9 +78,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/lead/{leadId}")
     public ResponseEntity<Object> updateLeadProfileByStaff(@Valid @PathVariable Long leadId,
                                                            @Valid @RequestBody UpdateLeadProfileByStaffRequest
@@ -98,8 +90,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/core-team/{coreTeamMemberId}")
     public ResponseEntity<Object> updateCoreTeamProfileByStaff(@Valid @PathVariable Long coreTeamMemberId,
                                                                @Valid @RequestBody UpdateCoreTeamMemberProfileByStaffRequest
@@ -113,7 +103,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/facilitator/{facilitatorId}")
     public ResponseEntity<Object> updateFacilitatorProfileByStaff(@Valid @PathVariable Long facilitatorId,
                                                                   @Valid @RequestBody UpdateFacilitatorProfileByStaffRequest
@@ -127,7 +116,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/googler/{googlerId}")
     public ResponseEntity<Object> updateGooglerProfileByStaff(@Valid @PathVariable Long googlerId,
                                                               @Valid @RequestBody UpdateGooglerProfileByStaffRequest
@@ -141,7 +129,6 @@ public class ProfileController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/user/{userId}")
     public ResponseEntity<Object> updateUserProfileByStaff(@Valid @PathVariable Long userId,
                                                            @Valid @RequestBody UpdateUserProfileByStaffRequest
@@ -154,7 +141,5 @@ public class ProfileController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-
-
 
 }

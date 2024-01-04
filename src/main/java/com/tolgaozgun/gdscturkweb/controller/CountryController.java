@@ -22,7 +22,6 @@ public class CountryController {
 
     private final CountryService countryService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCountries() {
         try {
@@ -35,7 +34,6 @@ public class CountryController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "{countryId}")
     public ResponseEntity<Object> getCountryById(@PathVariable Long countryId) {
         try {
@@ -46,7 +44,6 @@ public class CountryController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createCountry(@Valid @RequestBody CreateCountryRequest createCountryRequest) {
         try {
@@ -58,7 +55,6 @@ public class CountryController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{countryId}")
     public ResponseEntity<Object> editCountry(@PathVariable Long countryId, @Valid @RequestBody EditCountryRequest editCountryRequest) {
         try {

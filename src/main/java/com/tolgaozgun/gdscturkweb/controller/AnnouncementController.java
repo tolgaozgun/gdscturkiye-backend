@@ -23,7 +23,6 @@ public class AnnouncementController {
 
     private final AnnouncementService announcementService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "")
     public ResponseEntity<Object> getUserAnnouncements() {
         try {
@@ -34,7 +33,6 @@ public class AnnouncementController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "all")
     public ResponseEntity<Object> getAllAnnouncements() {
         try {
@@ -45,7 +43,6 @@ public class AnnouncementController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "{id}")
     public ResponseEntity<Object> getAnnouncementById(@PathVariable Long id) {
         try {
@@ -56,7 +53,6 @@ public class AnnouncementController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createAnnouncement(@Valid @RequestBody CreateAnnouncementRequest announcementRequest) {
         try {
@@ -67,7 +63,6 @@ public class AnnouncementController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{id}")
     public ResponseEntity<Object> editAnnouncement(@PathVariable Long id, @Valid @RequestBody EditAnnouncementRequest editAnnouncementRequest) {
         try {

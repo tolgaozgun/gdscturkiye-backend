@@ -22,7 +22,6 @@ public class TopicController {
 
     private final TopicService topicService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllTopics() {
         try {
@@ -35,7 +34,6 @@ public class TopicController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "{topicId}")
     public ResponseEntity<Object> getTopicById(@PathVariable Long topicId) {
         try {
@@ -46,7 +44,6 @@ public class TopicController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createTopic(@Valid @RequestBody CreateTopicRequest createTopicRequest) {
         try {
@@ -58,7 +55,6 @@ public class TopicController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{topicId}")
     public ResponseEntity<Object> editTopic(@PathVariable Long topicId, @Valid @RequestBody EditTopicRequest editTopicRequest) {
         try {

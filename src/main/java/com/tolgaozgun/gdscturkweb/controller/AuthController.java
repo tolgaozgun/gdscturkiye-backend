@@ -35,7 +35,6 @@ public class AuthController {
     private final FacilitatorService facilitatorService;
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "login")
     public ResponseEntity<Object> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
@@ -66,7 +65,6 @@ public class AuthController {
 //    @GetMapping(path = "refresh")
 //    public void refreshGet() {}
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/lead")
     public ResponseEntity<Object> registerLead(@Valid @RequestBody LeadRegisterRequest leadRegisterRequest) {
         try {
@@ -77,7 +75,6 @@ public class AuthController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/core-team")
     public ResponseEntity<Object> registerCoreTeam(@Valid @RequestBody CoreTeamRegisterRequest coreTeamRegisterRequest) {
         try {
@@ -89,7 +86,6 @@ public class AuthController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/googler")
     public ResponseEntity<Object> registerGoogler(@Valid @RequestBody GooglerRegisterRequest googlerRegisterRequest) {
         try {
@@ -100,8 +96,6 @@ public class AuthController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/facilitator")
     public ResponseEntity<Object> registerFacilitator(@Valid @RequestBody FacilitatorRegisterRequest facilitatorRegisterRequest) {
         try {
@@ -111,7 +105,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "verify-list")
     public ResponseEntity<Object> getVerifyList() {
         try {
@@ -123,7 +117,6 @@ public class AuthController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "verify/{userId}")
     public ResponseEntity<Object> verifyUser(@PathVariable Long userId) {
         try {
@@ -133,7 +126,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "unverify/{userId}")
     public ResponseEntity<Object> unverifyUser(@PathVariable Long userId) {
         try {
@@ -143,7 +136,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "blacklist/{userId}")
     public ResponseEntity<Object> blackListUser(@PathVariable Long userId) {
         try {
@@ -153,7 +146,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "unblacklist/{userId}")
     public ResponseEntity<Object> unBlackListUser(@PathVariable Long userId) {
         try {
@@ -163,7 +156,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @GetMapping(path = "current-user")
     public ResponseEntity<Object> getCurrentUser() {
         try {
@@ -173,7 +166,7 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
+
     @GetMapping(path = "current-user-with-role")
     public ResponseEntity<Object> getCurrentUserWithRole() {
         try {
@@ -183,8 +176,5 @@ public class AuthController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-
-
-
 
 }

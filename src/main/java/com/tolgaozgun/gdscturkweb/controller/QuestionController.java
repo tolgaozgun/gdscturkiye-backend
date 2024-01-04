@@ -22,7 +22,6 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "")
     public ResponseEntity<Object> getAllQuestions() {
         try {
@@ -33,7 +32,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "by-category/{categoryId}")
     public ResponseEntity<Object> getAllQuestions(@PathVariable Long categoryId) {
         try {
@@ -44,7 +42,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "categories")
     public ResponseEntity<Object> getAllQuestionCategories() {
         try {
@@ -55,7 +52,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "categories/{categoryId}")
     public ResponseEntity<Object> getQuestionCategoryById(@PathVariable Long categoryId) {
         try {
@@ -67,7 +63,6 @@ public class QuestionController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "{questionId}")
     public ResponseEntity<Object> getQuestionById(@PathVariable Long questionId) {
         try {
@@ -78,7 +73,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "asked-by-me")
     public ResponseEntity<Object> getAllQuestionsAskedByCurrentUser() {
         try {
@@ -89,7 +83,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "answered-by-me")
     public ResponseEntity<Object> getAllQuestionsAnsweredByCurrentUser() {
         try {
@@ -100,7 +93,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "asked-answered-by-me")
     public ResponseEntity<Object> getAllQuestionsAskedOrAnsweredByCurrentUser() {
         try {
@@ -111,7 +103,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "asked-by-user/{userId}")
     public ResponseEntity<Object> getAllQuestionsAskedByUser(@PathVariable Long userId) {
         try {
@@ -122,7 +113,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "answered-by-user/{userId}")
     public ResponseEntity<Object> getAllQuestionsAnsweredByUser(@PathVariable Long userId) {
         try {
@@ -133,7 +123,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "asked-answered-by-user/{userId}")
     public ResponseEntity<Object> getAllQuestionsAskedOrAnsweredByUser(@PathVariable Long userId) {
         try {
@@ -144,7 +133,6 @@ public class QuestionController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "ask")
     public ResponseEntity<Object> askQuestion(@Valid @RequestBody AskQuestionRequest askQuestionRequest) {
         try {
@@ -156,7 +144,6 @@ public class QuestionController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "answer")
     public ResponseEntity<Object> answerQuestion(@Valid @RequestBody AnswerQuestionRequest answerQuestionRequest) {
         try {

@@ -20,10 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("campaigns")
 public class CampaignController {
-
     private final CampaignService campaignService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCampaigns() {
         try {
@@ -34,8 +32,6 @@ public class CampaignController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "current")
     public ResponseEntity<Object> getCurrentCampaigns() {
         try {
@@ -46,8 +42,6 @@ public class CampaignController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "{campaignId}")
     public ResponseEntity<Object> getCampaignById(@PathVariable Long campaignId) {
         try {
@@ -58,7 +52,6 @@ public class CampaignController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "/pages/by-campaign/{campaignId}")
     public ResponseEntity<Object> getCampaignPagesByCampaign(@PathVariable Long campaignId) {
         try {
@@ -69,7 +62,6 @@ public class CampaignController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "/pages/{campaignPageId}")
     public ResponseEntity<Object> getCampaignPageById(@PathVariable Long campaignPageId) {
         try {
@@ -80,7 +72,6 @@ public class CampaignController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createCampaign(@Valid @RequestBody CreateCampaignRequest createCampaignRequest) {
         try {
@@ -92,7 +83,6 @@ public class CampaignController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{campaignId}")
     public ResponseEntity<Object> editCampaign(@PathVariable Long campaignId, @Valid @RequestBody EditCampaignRequest editCampaignRequest) {
         try {

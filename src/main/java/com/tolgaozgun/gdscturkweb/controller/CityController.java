@@ -22,7 +22,6 @@ public class CityController {
 
     private final CityService cityService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCities() {
         try {
@@ -34,7 +33,6 @@ public class CityController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "{cityId}")
     public ResponseEntity<Object> getCityById(@PathVariable Long cityId) {
         try {
@@ -45,7 +43,6 @@ public class CityController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createCity(@Valid @RequestBody CreateCityRequest createCityRequest) {
         try {
@@ -57,7 +54,6 @@ public class CityController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{cityId}")
     public ResponseEntity<Object> editCity(@PathVariable Long cityId, @Valid @RequestBody EditCityRequest editCityRequest) {
         try {

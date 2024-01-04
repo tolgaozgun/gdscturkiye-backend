@@ -26,7 +26,6 @@ public class FacilitatorController {
 
     private final FacilitatorService facilitatorService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllFacilitators() {
         try {
@@ -38,7 +37,6 @@ public class FacilitatorController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "dashboard")
     public ResponseEntity<Object> getCurrentFacilitatorDashboard() {
         try {
@@ -49,7 +47,6 @@ public class FacilitatorController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "create")
     public ResponseEntity<Object> createFacilitator(@NotNull @RequestBody FacilitatorRegisterRequest facilitatorRegisterRequest) {
         try {

@@ -27,7 +27,6 @@ public class AttendanceController {
 
     private final AttendanceService attendanceService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "")
     public ResponseEntity<Object> getAllAttendances() {
         try {
@@ -38,7 +37,6 @@ public class AttendanceController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "lead/current")
     public ResponseEntity<Object> getLeadAttendances() {
         try {
@@ -49,7 +47,6 @@ public class AttendanceController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "lead/{leadId}")
     public ResponseEntity<Object> getLeadAttendances(@PathVariable Long leadId) {
         try {
@@ -59,7 +56,6 @@ public class AttendanceController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "facilitator/{facilitatorId}")
     public ResponseEntity<Object> getFacilitatorBuddyTeamAttendance(@PathVariable Long facilitatorId) {
         try {
@@ -70,7 +66,6 @@ public class AttendanceController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "{id}")
     public ResponseEntity<Object> getAttendanceById(@PathVariable Long id) {
         try {
@@ -81,7 +76,6 @@ public class AttendanceController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createAttendance(@Valid @RequestBody CreateAttendanceRequest createAttendanceRequest) {
         try {
@@ -92,7 +86,6 @@ public class AttendanceController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{id}")
     public ResponseEntity<Object> editAttendance(@PathVariable Long id, @Valid @RequestBody EditAttendanceRequest editAttendanceRequest) {
         try {

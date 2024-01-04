@@ -19,7 +19,6 @@ public class PermissionController {
 
     private final PermissionService permissionService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getCurrentUserPermissions() {
         try {
@@ -31,7 +30,6 @@ public class PermissionController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "by-user/{userId}")
     public ResponseEntity<Object> getPermissionsForUser(@PathVariable Long userId) {
         try {

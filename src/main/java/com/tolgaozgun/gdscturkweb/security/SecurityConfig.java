@@ -13,6 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -38,9 +43,35 @@ public class SecurityConfig {
 			"/universities",
 	};
 
+	private static final String[] ALLOWED_ORIGINS = {
+			"https://localhost:5173",
+			"http://localhost:5173",
+			"https://voluntracker.app",
+			"https://www.voluntracker.app",
+			"http://voluntracker.com",
+			"http://www.voluntracker.com",
+			"www.voluntracker.com",
+			"voluntracker.com",
+	};
+
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList(ALLOWED_ORIGINS));
+		configuration.setAllowedMethods(Arrays.asList("*"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		System.out.println("CorsConfigurationSource is created");
+		return source;
+	}
+
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.cors();
+		http.cors().configurationSource(corsConfigurationSource());
 		http
 				.csrf().disable()
 				.authorizeHttpRequests((request) -> {
@@ -65,6 +96,7 @@ public class SecurityConfig {
 		return http.build();
 	}
 
+
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -84,8 +116,4 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder(10);
 	}
 
-	// @Bean
-	// public PasswordEncoder passwordEncoder(int strength) {
-	// return new BCryptPasswordEncoder(strength);
-	// }
 }

@@ -24,7 +24,6 @@ public class LeadController {
 
     private final LeadService leadService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllLeads() {
         try {
@@ -36,7 +35,6 @@ public class LeadController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "create")
     public ResponseEntity<Object> createLead(@NotNull @RequestBody LeadRegisterRequest leadRegisterRequest) {
         try {
@@ -48,7 +46,6 @@ public class LeadController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "dashboard")
     public ResponseEntity<Object> getCurrentLeadDashboard() {
         try {

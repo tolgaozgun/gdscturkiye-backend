@@ -20,7 +20,6 @@ public class BuddyTeamController {
 
     private final BuddyTeamService buddyTeamService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "")
     public ResponseEntity<Object> getAllBuddyTeams() {
         try {
@@ -33,7 +32,6 @@ public class BuddyTeamController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "by-lead")
     public ResponseEntity<Object> getBuddyTeamOfCurrentUser() {
         try {
@@ -44,7 +42,6 @@ public class BuddyTeamController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "by-facilitator")
     public ResponseEntity<Object> getBuddyTeamOfFacilitator() {
         try {
@@ -55,7 +52,6 @@ public class BuddyTeamController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(path = "update/{buddyTeamId}")
     public ResponseEntity<Object> updateBuddyTeamByBuddyTeamId(@PathVariable Long buddyTeamId,
                                                                @RequestBody UpdateBuddyTeamRequest updateBuddyTeamRequest) {
@@ -67,7 +63,6 @@ public class BuddyTeamController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(path = "update/by-facilitator")
     public ResponseEntity<Object> updateBuddyTeamByFacilitator(@RequestBody UpdateBuddyTeamRequest updateBuddyTeamRequest) {
         try {
@@ -78,7 +73,6 @@ public class BuddyTeamController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(path = "update/by-lead")
     public ResponseEntity<Object> updateBuddyTeamByLead(@RequestBody UpdateBuddyTeamRequest updateBuddyTeamRequest) {
         try {

@@ -22,7 +22,6 @@ public class GooglerController {
 
     private final GooglerService googlerService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCoreTeamMembers() {
         try {
@@ -32,7 +31,6 @@ public class GooglerController {
             // HTTP 500
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "create")
     public ResponseEntity<Object> createGoogler(@NotNull @RequestBody GooglerRegisterRequest googlerRegisterRequest) {
         try {

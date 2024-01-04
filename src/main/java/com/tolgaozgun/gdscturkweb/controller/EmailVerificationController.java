@@ -22,7 +22,6 @@ public class EmailVerificationController {
 
     private final EmailVerificationService emailVerificationService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "verify")
     public ResponseEntity<Object> verifyEmail(@RequestBody @NotNull EmailVerificationRequest emailVerificationRequest) {
         try {
@@ -34,7 +33,6 @@ public class EmailVerificationController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "resend")
     public ResponseEntity<Object> resendVerificationCode(@RequestBody @NotNull EmailResendRequest emailResendRequest) {
         try {

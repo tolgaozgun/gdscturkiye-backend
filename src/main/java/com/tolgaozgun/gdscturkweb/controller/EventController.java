@@ -20,7 +20,6 @@ public class EventController {
 
     private final EventService eventService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllEvents() {
         try {
@@ -31,7 +30,6 @@ public class EventController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "university/{universityId}")
     public ResponseEntity<Object> getEventsByUniversityId(@Valid @PathVariable Long universityId) {
         try {
@@ -42,7 +40,6 @@ public class EventController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "university/current-user")
     public ResponseEntity<Object> getEventsByCurrentUserUniversity() {
         try {
@@ -54,8 +51,6 @@ public class EventController {
     }
 
 
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "buddy-team/current-user")
     public ResponseEntity<Object> getEventsByCurrentUserBuddy() {
         try {
@@ -66,7 +61,6 @@ public class EventController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "parse/current-university")
     public ResponseEntity<Object> parseCurrentUserUniversityEvents() {
         try {
@@ -77,7 +71,6 @@ public class EventController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "parse/{universityId}")
     public ResponseEntity<Object> parseUniversityEvents(@Valid @PathVariable Long universityId) {
         try {

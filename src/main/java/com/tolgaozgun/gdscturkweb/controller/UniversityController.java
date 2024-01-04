@@ -22,7 +22,6 @@ public class UniversityController {
 
     private final UniversityService universityService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllUniversities() {
         try {
@@ -33,9 +32,6 @@ public class UniversityController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-
-
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "{universityId}")
     public ResponseEntity<Object> getUniversityById(@PathVariable Long universityId) {
         try {
@@ -46,7 +42,6 @@ public class UniversityController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
     public ResponseEntity<Object> createUniversity(@Valid @RequestBody CreateUniversityRequest createUniversityRequest) {
         try {
@@ -58,7 +53,6 @@ public class UniversityController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{universityId}")
     public ResponseEntity<Object> editUniversity(@PathVariable Long universityId, @Valid @RequestBody EditUniversityRequest editUniversityRequest) {
         try {

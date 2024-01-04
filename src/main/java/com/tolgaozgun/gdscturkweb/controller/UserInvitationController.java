@@ -21,7 +21,6 @@ public class UserInvitationController {
 
     private final UserInvitationService userInvitationService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "invite")
     public ResponseEntity<Object> inviteUser(@RequestBody @NotNull InviteUserRequest inviteUserRequest) {
         try {
@@ -33,7 +32,6 @@ public class UserInvitationController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @PostMapping( path = "cancel/{invitationId}")
     public ResponseEntity<Object> cancelInvitation(@PathVariable Long invitationId) {
         try {

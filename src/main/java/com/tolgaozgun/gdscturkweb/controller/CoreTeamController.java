@@ -25,7 +25,6 @@ public class CoreTeamController {
     private final CoreTeamService coreTeamService;
     private final LeadService leadService;
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "")
     public ResponseEntity<Object> getAllCoreTeams() {
         try {
@@ -37,7 +36,6 @@ public class CoreTeamController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping(path = "current-lead")
     public ResponseEntity<Object> getCoreTeamByCurrentLead() {
         try {
@@ -48,7 +46,6 @@ public class CoreTeamController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "current-member")
     public ResponseEntity<Object> getCoreTeamByCurrentMember() {
         try {
@@ -59,7 +56,6 @@ public class CoreTeamController {
             return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
     @GetMapping( path = "id/{coreTeamId}")
     public ResponseEntity<Object> getCoreTeamByCurrentMember(@PathVariable Long coreTeamId) {
         try {
