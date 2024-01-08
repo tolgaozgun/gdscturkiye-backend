@@ -9,6 +9,7 @@ import com.tolgaozgun.gdscturkweb.dto.request.register.GooglerRegisterRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.register.LeadRegisterRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.LoginResponse;
 import com.tolgaozgun.gdscturkweb.dto.response.UserWithRoleResponse;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
 import com.tolgaozgun.gdscturkweb.model.user.CoreTeamMember;
@@ -40,9 +41,11 @@ public class AuthController {
         try {
             LoginResponse token = authService.login(loginRequest);
             return Response.create("login is successful", HttpStatus.OK, token);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -70,9 +73,11 @@ public class AuthController {
         try {
             LeadDTO leadDTO = leadService.registerLead(leadRegisterRequest);
             return Response.create("Register is successful", HttpStatus.OK, leadDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/core-team")
@@ -80,9 +85,11 @@ public class AuthController {
         try {
             CoreTeamMemberDTO coreTeamMember = coreTeamService.registerCoreTeam(coreTeamRegisterRequest);
             return Response.create("Register is successful", HttpStatus.OK, coreTeamMember);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -91,9 +98,11 @@ public class AuthController {
         try {
             GooglerDTO googlerDTO = googlerService.registerGoogler(googlerRegisterRequest);
             return Response.create("Register is successful", HttpStatus.OK, googlerDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "register/facilitator")
@@ -101,9 +110,11 @@ public class AuthController {
         try {
             FacilitatorDTO facilitatorDTO = facilitatorService.registerFacilitator(facilitatorRegisterRequest);
             return Response.create("Register is successful", HttpStatus.OK, facilitatorDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "verify-list")
@@ -111,9 +122,11 @@ public class AuthController {
         try {
             List<UserDTO> verifyList = authService.getVerifyList();
             return Response.create("Gathered verification list", HttpStatus.OK, verifyList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -122,9 +135,11 @@ public class AuthController {
         try {
             UserDTO userDTO = authService.verifyUser(userId);
             return Response.create("Verification is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "unverify/{userId}")
@@ -132,9 +147,11 @@ public class AuthController {
         try {
             UserDTO userDTO = authService.unverifyUser(userId);
             return Response.create("Unverification is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "blacklist/{userId}")
@@ -142,9 +159,11 @@ public class AuthController {
         try {
             UserDTO userDTO = authService.blackListUser(userId);
             return Response.create("Unverification is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "unblacklist/{userId}")
@@ -152,9 +171,11 @@ public class AuthController {
         try {
             UserDTO userDTO = authService.unBlackListUser(userId);
             return Response.create("Unverification is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "current-user")
@@ -162,9 +183,11 @@ public class AuthController {
         try {
             UserDTO currentUser = authService.getCurrentUser();
             return Response.create("Gathered the current user", HttpStatus.OK, currentUser);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "current-user-with-role")
@@ -172,9 +195,11 @@ public class AuthController {
         try {
             UserWithRoleResponse userWithRoleResponse = authService.getCurrentUserWithRole();
             return Response.create("Gathered the current user with role", HttpStatus.OK, userWithRoleResponse);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

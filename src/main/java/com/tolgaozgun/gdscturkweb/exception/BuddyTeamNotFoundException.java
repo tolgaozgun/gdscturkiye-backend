@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class BuddyTeamNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class BuddyTeamNotFoundException extends BaseException {
     public BuddyTeamNotFoundException() {
-        super("Buddy team not found!");
+        super("Buddy team not found!", HttpStatus.NOT_FOUND);
     }
 }

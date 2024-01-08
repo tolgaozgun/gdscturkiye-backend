@@ -1,8 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class NotPermittedException  extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class NotPermittedException  extends BaseException {
     public NotPermittedException() {
-        super("You are not permitted to do this action!");
+        super("You are not permitted to do this action!", HttpStatus.FORBIDDEN);
     }
 
 }

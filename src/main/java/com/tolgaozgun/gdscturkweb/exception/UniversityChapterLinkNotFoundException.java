@@ -1,8 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UniversityChapterLinkNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UniversityChapterLinkNotFoundException extends BaseException {
     public UniversityChapterLinkNotFoundException() {
-        super("University chapter link is not set!");
+        super("University chapter link is not set!", HttpStatus.NOT_FOUND);
     }
 
 }

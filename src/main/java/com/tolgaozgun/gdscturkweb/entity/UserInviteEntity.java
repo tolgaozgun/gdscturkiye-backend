@@ -1,5 +1,6 @@
 package com.tolgaozgun.gdscturkweb.entity;
 
+import com.tolgaozgun.gdscturkweb.dto.user.register.ExtraRegister;
 import com.tolgaozgun.gdscturkweb.entity.user.UserEntity;
 import com.tolgaozgun.gdscturkweb.enums.UserType;
 import jakarta.persistence.*;
@@ -25,7 +26,10 @@ public class UserInviteEntity {
     private String email;
 
     @Column(nullable = false)
-    private Boolean isValid;
+    private Boolean isCancelled;
+
+    @Column(nullable = false)
+    private Boolean isAccepted;
 
     @Column(nullable = false)
     private String inviteCode;
@@ -39,6 +43,9 @@ public class UserInviteEntity {
 
     @Column(nullable = false)
     private Date invitedAt;
+
+    @Column
+    private Date acceptedAt;
 
     @Column(nullable = false)
     private Date validUntil;

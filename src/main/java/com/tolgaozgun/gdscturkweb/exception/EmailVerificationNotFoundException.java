@@ -1,8 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class EmailVerificationNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class EmailVerificationNotFoundException extends BaseException {
     public EmailVerificationNotFoundException() {
-        super("Email verification is not found!");
+        super("Email verification is not found!", HttpStatus.NOT_FOUND);
     }
 
 }

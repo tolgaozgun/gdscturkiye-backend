@@ -4,6 +4,7 @@ import com.tolgaozgun.gdscturkweb.dto.AnnouncementDTO;
 import com.tolgaozgun.gdscturkweb.dto.request.announcement.CreateAnnouncementRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.announcement.EditAnnouncementRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.service.AnnouncementService;
 import com.tolgaozgun.gdscturkweb.service.EventService;
@@ -28,9 +29,11 @@ public class AnnouncementController {
         try {
             List<AnnouncementDTO> announcements = announcementService.getAllAnnouncementsByUserType();
             return Response.create("Gathered all announcements", HttpStatus.OK, announcements);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "all")
@@ -38,9 +41,11 @@ public class AnnouncementController {
         try {
             List<AnnouncementDTO> announcements = announcementService.getAllAnnouncements();
             return Response.create("Gathered all announcements", HttpStatus.OK, announcements);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "{id}")
@@ -48,9 +53,11 @@ public class AnnouncementController {
         try {
             AnnouncementDTO announcement = announcementService.getAnnouncementById(id);
             return Response.create("Found the announcement", HttpStatus.OK, announcement);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
@@ -58,9 +65,11 @@ public class AnnouncementController {
         try {
             AnnouncementDTO announcement = announcementService.createAnnouncement(announcementRequest);
             return Response.create("Announcement created successfully", HttpStatus.OK, announcement);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "edit/{id}")
@@ -68,8 +77,10 @@ public class AnnouncementController {
         try {
             AnnouncementDTO announcement = announcementService.editAnnouncement(id, editAnnouncementRequest);
             return Response.create("Announcement edited successfully", HttpStatus.OK, announcement);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

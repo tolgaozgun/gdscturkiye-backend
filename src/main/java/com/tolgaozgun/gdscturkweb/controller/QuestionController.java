@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.QuestionDTO;
 import com.tolgaozgun.gdscturkweb.dto.request.question.*;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.QuestionCategory;
 import com.tolgaozgun.gdscturkweb.service.QuestionService;
@@ -27,9 +28,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getAllQuestions();
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "by-category/{categoryId}")
@@ -37,9 +40,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getAllQuestionsByCategory(categoryId);
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "categories")
@@ -47,9 +52,11 @@ public class QuestionController {
         try {
             List<QuestionCategory> questionCategories = questionService.getAllQuestionCategories();
             return Response.create("Gathered all categories", HttpStatus.OK, questionCategories);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "categories/{categoryId}")
@@ -57,9 +64,11 @@ public class QuestionController {
         try {
             QuestionCategory questionCategory = questionService.getQuestionCategoryById(categoryId);
             return Response.create("Gathered the category", HttpStatus.OK, questionCategory);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -68,9 +77,11 @@ public class QuestionController {
         try {
             QuestionDTO question = questionService.getQuestion(questionId);
             return Response.create("Found the question", HttpStatus.OK, question);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "asked-by-me")
@@ -78,9 +89,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getQuestionsAskedByCurrentUser();
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "answered-by-me")
@@ -88,9 +101,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getAnsweredQuestionsByCurrentUser();
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "asked-answered-by-me")
@@ -98,9 +113,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getQuestionsAskedOrAnsweredByCurrentUser();
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "asked-by-user/{userId}")
@@ -108,9 +125,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getQuestionsAskedByUser(userId);
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "answered-by-user/{userId}")
@@ -118,9 +137,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getAnsweredQuestionsByUser(userId);
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "asked-answered-by-user/{userId}")
@@ -128,9 +149,11 @@ public class QuestionController {
         try {
             List<QuestionDTO> questions = questionService.getQuestionsAskedOrAnsweredByUser(userId);
             return Response.create("Successfully listed questions", HttpStatus.OK, questions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "ask")
@@ -138,9 +161,11 @@ public class QuestionController {
         try {
             QuestionDTO question = questionService.askQuestion(askQuestionRequest);
             return Response.create("Successfully asked question", HttpStatus.OK, question);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -149,9 +174,11 @@ public class QuestionController {
         try {
             QuestionDTO question = questionService.answerQuestion(answerQuestionRequest);
             return Response.create("Successfully answered question", HttpStatus.OK, question);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

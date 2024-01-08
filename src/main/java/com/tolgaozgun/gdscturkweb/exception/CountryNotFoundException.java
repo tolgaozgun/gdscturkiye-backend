@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class CountryNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class CountryNotFoundException extends BaseException {
     public CountryNotFoundException() {
-        super("Country not found!");
+        super("Country not found!", HttpStatus.NOT_FOUND);
     }
 }

@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class CoreTeamNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class CoreTeamNotFoundException extends BaseException {
     public CoreTeamNotFoundException() {
-        super("Core team not found!");
+        super("Core team not found!", HttpStatus.NOT_FOUND);
     }
 }

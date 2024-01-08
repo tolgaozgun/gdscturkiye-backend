@@ -1,6 +1,7 @@
 package com.tolgaozgun.gdscturkweb.controller;
 
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.Permission;
 import com.tolgaozgun.gdscturkweb.service.PermissionService;
@@ -24,9 +25,11 @@ public class PermissionController {
         try {
             List<Permission> permissions = permissionService.getCurrentUserPermissions();
             return Response.create("Gathered all permissions for the user", HttpStatus.OK, permissions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -35,9 +38,11 @@ public class PermissionController {
         try {
             List<Permission> permissions = permissionService.getUserPermissions(userId);
             return Response.create("Gathered all permissions for the user", HttpStatus.OK, permissions);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

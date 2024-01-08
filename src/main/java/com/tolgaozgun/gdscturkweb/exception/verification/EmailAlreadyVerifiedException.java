@@ -1,7 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception.verification;
 
-public class EmailAlreadyVerifiedException extends RuntimeException {
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
+import org.springframework.http.HttpStatus;
+
+public class EmailAlreadyVerifiedException extends BaseException {
     public EmailAlreadyVerifiedException() {
-        super("Email is already verified!");
+        super("Email is already verified!", HttpStatus.BAD_REQUEST);
     }
 }

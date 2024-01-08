@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class GooglerNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class GooglerNotFoundException extends BaseException {
     public GooglerNotFoundException() {
-        super("Googler not found!");
+        super("Googler not found!", HttpStatus.NOT_FOUND);
     }
 }

@@ -4,6 +4,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.*;
 import com.tolgaozgun.gdscturkweb.dto.request.profile.*;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.user.Googler;
 import com.tolgaozgun.gdscturkweb.service.ProfileService;
@@ -27,9 +28,11 @@ public class ProfileController {
         try {
             LeadDTO leadDTO = profileService.updateLeadProfile(updateLeadProfileByLeadRequest);
             return Response.create("Update is successful", HttpStatus.OK, leadDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -39,9 +42,11 @@ public class ProfileController {
         try {
             CoreTeamMemberDTO coreTeamMemberDTO = profileService.updateCoreTeamMemberProfile(updateCoreTeamMemberProfileByMemberRequest);
             return Response.create("Update is successful", HttpStatus.OK, coreTeamMemberDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/facilitator")
@@ -50,9 +55,11 @@ public class ProfileController {
         try {
             FacilitatorDTO facilitatorDTO = profileService.updateFacilitatorProfile(updateFacilitatorProfileByFacilitatorRequest);
             return Response.create("Update is successful", HttpStatus.OK, facilitatorDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update/googler")
@@ -61,9 +68,11 @@ public class ProfileController {
         try {
             GooglerDTO googlerDTO = profileService.updateGooglerProfile(updateGooglerProfileByGooglerRequest);
             return Response.create("Update is successful", HttpStatus.OK, googlerDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -73,9 +82,11 @@ public class ProfileController {
         try {
             UserDTO userDTO = profileService.updateUserProfileByUser(updateUserProfileByUserRequest);
             return Response.create("Update is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/lead/{leadId}")
@@ -85,9 +96,11 @@ public class ProfileController {
         try {
             LeadDTO leadDTO = profileService.updateLeadProfileByStaff(leadId, updateLeadProfileByStaffRequest);
             return Response.create("Update is successful", HttpStatus.OK, leadDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/core-team/{coreTeamMemberId}")
@@ -98,9 +111,11 @@ public class ProfileController {
             CoreTeamMemberDTO coreTeamMemberDTO = profileService.updateCoreTeamMemberProfileByStaff(coreTeamMemberId,
                     updateCoreTeamMemberProfileByStaffRequest);
             return Response.create("Update is successful", HttpStatus.OK, coreTeamMemberDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/facilitator/{facilitatorId}")
@@ -111,9 +126,11 @@ public class ProfileController {
             FacilitatorDTO facilitatorDTO = profileService.updateFacilitatorProfileByStaff(facilitatorId,
                     updateFacilitatorProfileByStaffRequest);
             return Response.create("Update is successful", HttpStatus.OK, facilitatorDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/googler/{googlerId}")
@@ -124,9 +141,11 @@ public class ProfileController {
             GooglerDTO googlerDTO = profileService.updateGooglerProfileByStaff(googlerId,
                     updateGooglerProfileByStaffRequest);
             return Response.create("Update is successful", HttpStatus.OK, googlerDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "update-staff/user/{userId}")
@@ -137,9 +156,11 @@ public class ProfileController {
             UserDTO userDTO = profileService.updateUserProfileByStaff(userId,
                     updateUserProfileByStaffRequest);
             return Response.create("Update is successful", HttpStatus.OK, userDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

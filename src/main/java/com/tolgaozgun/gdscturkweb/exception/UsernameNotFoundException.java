@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UsernameNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UsernameNotFoundException extends BaseException {
     public UsernameNotFoundException(String message) {
-        super(message);
+        super(message, HttpStatus.NOT_FOUND);
     }
 }

@@ -2,6 +2,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 
 import com.tolgaozgun.gdscturkweb.dto.response.LeadDashboardResponse;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.Event;
 import com.tolgaozgun.gdscturkweb.service.EventService;
@@ -25,9 +26,11 @@ public class EventController {
         try {
             List<Event> events = eventService.getAllEvents();
             return Response.create("Gathered all events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "university/{universityId}")
@@ -35,9 +38,11 @@ public class EventController {
         try {
             List<Event> events = eventService.getEventsByUniversity(universityId);
             return Response.create("Gathered university events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "university/current-user")
@@ -45,9 +50,11 @@ public class EventController {
         try {
             List<Event> events = eventService.getEventsByCurrentUserUniversity();
             return Response.create("Gathered university events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -56,9 +63,11 @@ public class EventController {
         try {
             List<Event> events = eventService.getEventsByCurrentBuddyTeam();
             return Response.create("Gathered buddy events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping( path = "parse/current-university")
@@ -66,9 +75,11 @@ public class EventController {
         try {
             List<Event> events = eventService.scrapeCurrentChapterEvents();
             return Response.create("Gathered university events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping( path = "parse/{universityId}")
@@ -76,9 +87,11 @@ public class EventController {
         try {
             List<Event> events = eventService.scrapeChapterEventsByUniversityId(universityId);
             return Response.create("Gathered university events", HttpStatus.OK, events);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

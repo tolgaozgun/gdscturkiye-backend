@@ -4,6 +4,7 @@ import com.tolgaozgun.gdscturkweb.dto.CoreTeamDTO;
 import com.tolgaozgun.gdscturkweb.dto.CoreTeamMemberDTO;
 import com.tolgaozgun.gdscturkweb.dto.request.register.CoreTeamRegisterRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.service.CoreTeamMemberService;
 import com.tolgaozgun.gdscturkweb.service.CoreTeamService;
@@ -30,9 +31,11 @@ public class CoreTeamController {
         try {
             List<CoreTeamDTO> coreTeams = coreTeamService.getAllCoreTeams();
             return Response.create("Gathered all core teams", HttpStatus.OK, coreTeams);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -41,9 +44,11 @@ public class CoreTeamController {
         try {
             CoreTeamDTO coreTeam = leadService.getCoreTeamByCurrentLead();
             return Response.create("Gathered core team by lead", HttpStatus.OK, coreTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "current-member")
@@ -51,9 +56,11 @@ public class CoreTeamController {
         try {
             CoreTeamDTO coreTeamDTO = coreTeamService.getCoreTeamByCurrentCoreTeamMember();
             return Response.create("Gathered core team by member", HttpStatus.OK, coreTeamDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "id/{coreTeamId}")
@@ -61,9 +68,11 @@ public class CoreTeamController {
         try {
             CoreTeamDTO coreTeamDTO = coreTeamService.getCoreTeamById(coreTeamId);
             return Response.create("Gathered core team by member", HttpStatus.OK, coreTeamDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

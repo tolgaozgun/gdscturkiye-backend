@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UniversityNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UniversityNotFoundException extends BaseException {
     public UniversityNotFoundException() {
-        super("University not found!");
+        super("University not found!", HttpStatus.NOT_FOUND);
     }
 }

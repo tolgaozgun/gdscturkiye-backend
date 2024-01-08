@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.request.country.CreateCountryRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.country.EditCountryRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.Country;
 import com.tolgaozgun.gdscturkweb.service.CountryService;
@@ -27,9 +28,10 @@ public class CountryController {
         try {
             List<Country> countryList = countryService.getAllCountries();
             return Response.create("Gathered all countries", HttpStatus.OK, countryList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP.500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -39,9 +41,11 @@ public class CountryController {
         try {
             Country country = countryService.getCountry(countryId);
             return Response.create("Found the countru", HttpStatus.OK, country);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
@@ -49,9 +53,11 @@ public class CountryController {
         try {
             Country country = countryService.createCountry(createCountryRequest);
             return Response.create("Country created successfully", HttpStatus.OK, country);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -60,9 +66,11 @@ public class CountryController {
         try {
             Country country = countryService.editCountry(countryId, editCountryRequest);
             return Response.create("Country edited successfully", HttpStatus.OK, country);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

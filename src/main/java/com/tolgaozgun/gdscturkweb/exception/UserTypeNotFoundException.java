@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UserTypeNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserTypeNotFoundException extends BaseException {
     public UserTypeNotFoundException() {
-        super("Error while getting user type details");
+        super("Error while getting user type details", HttpStatus.NOT_FOUND);
     }
 }

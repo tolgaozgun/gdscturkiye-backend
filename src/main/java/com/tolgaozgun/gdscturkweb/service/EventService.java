@@ -214,6 +214,10 @@ public class EventService {
 
         String url = universityEntity.getChapterLink();
 
+        if (url == null || url.isEmpty()) {
+            throw new UniversityChapterLinkNotFoundException();
+        }
+
 //        String url = "https://gdsc.community.dev/" + chapterName + "/";
         List<EventEntity> eventInfos = new ArrayList<>();
 

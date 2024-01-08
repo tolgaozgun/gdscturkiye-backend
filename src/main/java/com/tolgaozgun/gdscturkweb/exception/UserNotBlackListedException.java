@@ -1,8 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UserNotBlackListedException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserNotBlackListedException extends BaseException {
     public UserNotBlackListedException() {
-        super("User is not blacklisted!");
+        super("User is not blacklisted!", HttpStatus.BAD_REQUEST);
     }
 
 }

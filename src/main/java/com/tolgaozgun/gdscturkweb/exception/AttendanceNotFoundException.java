@@ -1,11 +1,13 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class AttendanceNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class AttendanceNotFoundException extends BaseException {
     public AttendanceNotFoundException() {
-        super("Attendance not found!");
+        super("Attendance not found!", HttpStatus.NOT_FOUND);
     }
 
     public AttendanceNotFoundException(Long attendanceId) {
-        super("Attendance with ID " + attendanceId + "not found!");
+        super("Attendance with ID " + attendanceId + "not found!", HttpStatus.NOT_FOUND);
     }
 }

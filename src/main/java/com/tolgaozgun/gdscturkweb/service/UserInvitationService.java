@@ -1,5 +1,6 @@
 package com.tolgaozgun.gdscturkweb.service;
 
+import com.tolgaozgun.gdscturkweb.dto.request.invitation.InviteCoreTeamRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.invitation.InviteUserRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.UserInvitationResponse;
 import com.tolgaozgun.gdscturkweb.entity.UserInviteEntity;
@@ -38,14 +39,14 @@ public class UserInvitationService {
             }
 
             UserInviteEntity userInvite = userInviteEntity.get();
-            userInvite.setIsValid(false);
+            userInvite.setIsCancelled(true);
             userInvitationRepository.save(userInvite);
 
             UserInvitationResponse userInvitationResponse = new UserInvitationResponse();
             userInvitationResponse.setEmail(userInvite.getEmail());
             userInvitationResponse.setRole(userInvite.getRole());
             userInvitationResponse.setValidUntil(userInvite.getValidUntil());
-            userInvitationResponse.setIsValid(userInvite.getIsValid());
+            userInvitationResponse.setIsCancelled(userInvite.getIsCancelled());
             return userInvitationResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,12 +54,33 @@ public class UserInvitationService {
         }
     }
 
-    public UserInviteEntity createInvitation(InviteUserRequest inviteUserRequest) {
+    public UserInviteEntity acceptInvitation(InviteUserRequest inviteUserRequest) {
         try {
-
             UserEntity userEntity = userService.getCurrentUserEntity();
             String email = inviteUserRequest.getEmail();
             UserType role = inviteUserRequest.getRole();
+            String invitationCode = inviteUserRequest.getInvitationCode();
+
+            UserInviteEntity userInviteEntity = getInvitation(email, role, invitationCode);
+            userInviteEntity.setIsValid(false);
+            userInviteEntity.setAcceptedAt(new Date());
+            userInviteEntity.setAcceptedBy(userEntity);
+            userInviteEntity.setIsValid(false);
+            userInviteEntity.setAccepted(true);
+
+            return save(userInviteEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public UserInviteEntity createCoreTeamInvitation(InviteCoreTeamRequest inviteCoreTeamRequest) {
+        try {
+
+            UserEntity userEntity = userService.getCurrentUserEntity();
+            String email = inviteCoreTeamRequest.getEmail();
+            UserType role = UserType.CORE_TEAM_MEMBER;
 
             if (!userEntity.getUserType().isAbsHigherRankThan(role)) {
                 throw new NotPermittedException();
@@ -71,11 +93,12 @@ public class UserInvitationService {
             UserInviteEntity userInviteEntity = new UserInviteEntity();
             userInviteEntity.setEmail(email);
             userInviteEntity.setRole(role);
-            userInviteEntity.setIsValid(true);
+            userInviteEntity.setIsCancelled(false);
             userInviteEntity.setInvitedAt(new Date());
             userInviteEntity.setValidUntil(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * VALIDITY_IN_DAYS)));
             userInviteEntity.setInviteCode(generateInviteCode());
             userInviteEntity.setInvitedBy(userEntity);
+
 
             return save(userInviteEntity);
         } catch (Exception e) {

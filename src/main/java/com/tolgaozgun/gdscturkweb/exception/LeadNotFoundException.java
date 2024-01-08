@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class LeadNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class LeadNotFoundException extends BaseException {
     public LeadNotFoundException() {
-        super("Lead not found!");
+        super("Lead not found!", HttpStatus.NOT_FOUND);
     }
 }

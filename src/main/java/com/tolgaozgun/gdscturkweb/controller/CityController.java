@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.request.city.CreateCityRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.city.EditCityRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.City;
 import com.tolgaozgun.gdscturkweb.service.CityService;
@@ -27,9 +28,11 @@ public class CityController {
         try {
             List<City> cityList = cityService.getAllCities();
             return Response.create("Gathered all cities", HttpStatus.OK, cityList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -38,9 +41,11 @@ public class CityController {
         try {
             City city = cityService.getCity(cityId);
             return Response.create("Found the city", HttpStatus.OK, city);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
@@ -48,9 +53,11 @@ public class CityController {
         try {
             City city = cityService.createCity(createCityRequest);
             return Response.create("City created successfully", HttpStatus.OK, city);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -59,9 +66,11 @@ public class CityController {
         try {
             City city = cityService.editCity(cityId, editCityRequest);
             return Response.create("City edited successfully", HttpStatus.OK, city);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

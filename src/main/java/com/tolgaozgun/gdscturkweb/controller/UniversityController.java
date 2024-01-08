@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.request.university.CreateUniversityRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.university.EditUniversityRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.University;
 import com.tolgaozgun.gdscturkweb.service.UniversityService;
@@ -27,9 +28,11 @@ public class UniversityController {
         try {
             List<University> universityList = universityService.getAllUniversities();
             return Response.create("Gathered all universities", HttpStatus.OK, universityList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping( path = "{universityId}")
@@ -37,9 +40,11 @@ public class UniversityController {
         try {
             University university = universityService.getUniversityById(universityId);
             return Response.create("Found the university", HttpStatus.OK, university);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
@@ -47,9 +52,11 @@ public class UniversityController {
         try {
             University university = universityService.createUniversity(createUniversityRequest);
             return Response.create("University created successfully", HttpStatus.OK, university);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -58,9 +65,11 @@ public class UniversityController {
         try {
             University university = universityService.editUniversity(universityId, editUniversityRequest);
             return Response.create("University edited successfully", HttpStatus.OK, university);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

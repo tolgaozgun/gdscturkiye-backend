@@ -1,8 +1,10 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UserAlreadyBlackListedException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserAlreadyBlackListedException extends BaseException {
     public UserAlreadyBlackListedException() {
-        super("User is already blacklisted!");
+        super("User is already blacklisted!", HttpStatus.BAD_REQUEST);
     }
 
 }

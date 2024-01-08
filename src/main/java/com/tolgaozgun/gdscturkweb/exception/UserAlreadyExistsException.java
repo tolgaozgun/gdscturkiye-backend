@@ -1,11 +1,13 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class UserAlreadyExistsException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserAlreadyExistsException extends BaseException {
     public UserAlreadyExistsException() {
-        super("This user already exists!");
+        super("This user already exists!", HttpStatus.BAD_REQUEST);
     }
 
     public UserAlreadyExistsException(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }

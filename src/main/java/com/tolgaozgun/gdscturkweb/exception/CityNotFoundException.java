@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class CityNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class CityNotFoundException extends BaseException {
     public CityNotFoundException() {
-        super("City not found!");
+        super("City not found!", HttpStatus.NOT_FOUND);
     }
 }

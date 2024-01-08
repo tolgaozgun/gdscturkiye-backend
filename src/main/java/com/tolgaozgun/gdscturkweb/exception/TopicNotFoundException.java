@@ -1,10 +1,12 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class TopicNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class TopicNotFoundException extends BaseException {
     public TopicNotFoundException() {
-        super("Topic not found!");
+        super("Topic not found!", HttpStatus.NOT_FOUND);
     }
     public TopicNotFoundException(Long topicId) {
-        super("Topic with ID " + topicId + " not found!");
+        super("Topic with ID " + topicId + " not found!", HttpStatus.NOT_FOUND);
     }
 }

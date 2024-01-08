@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.request.topic.CreateTopicRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.topic.EditTopicRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.Topic;
 import com.tolgaozgun.gdscturkweb.service.TopicService;
@@ -27,9 +28,11 @@ public class TopicController {
         try {
             List<Topic> topicList = topicService.getAllTopics();
             return Response.create("Gathered all topics", HttpStatus.OK, topicList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -39,9 +42,11 @@ public class TopicController {
         try {
             Topic topic = topicService.getTopic(topicId);
             return Response.create("Found the topic", HttpStatus.OK, topic);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "create")
@@ -49,9 +54,11 @@ public class TopicController {
         try {
             Topic topic = topicService.createTopic(createTopicRequest);
             return Response.create("Topic created successfully", HttpStatus.OK, topic);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -60,9 +67,11 @@ public class TopicController {
         try {
             Topic topic = topicService.editTopic(topicId, editTopicRequest);
             return Response.create("Topic edited successfully", HttpStatus.OK, topic);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

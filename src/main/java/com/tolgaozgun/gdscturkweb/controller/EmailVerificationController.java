@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.request.verification.EmailResendRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.verification.EmailVerificationRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.City;
 import com.tolgaozgun.gdscturkweb.service.CityService;
@@ -28,9 +29,11 @@ public class EmailVerificationController {
             String email = emailVerificationService.verifyEmail(emailVerificationRequest);
             return Response.create("Verified email for "  + email,
                     HttpStatus.OK, email);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping( path = "resend")
@@ -39,9 +42,11 @@ public class EmailVerificationController {
             String email = emailVerificationService.resendVerification(emailResendRequest);
             return Response.create("Resent verification code for "  + email,
                     HttpStatus.OK, email);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

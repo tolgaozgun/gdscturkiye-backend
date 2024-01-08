@@ -3,6 +3,7 @@ package com.tolgaozgun.gdscturkweb.dto.response;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -43,4 +44,17 @@ public class Response {
 
         return new ResponseEntity<Object>(response, HttpStatusCode.valueOf(status));
     }
+
+    public static ResponseEntity<Object> create(BaseException baseException) {
+        HashMap<String, Object> response = new HashMap<String, Object>();
+        HttpStatus httpStatus = baseException.getHttpStatus();
+        String timestamp = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss").format(new java.util.Date());
+
+        response.put("timestamp", timestamp);
+        response.put("msg", baseException.getMessage());
+        response.put("status", httpStatus.value());
+
+        return new ResponseEntity<Object>(response, httpStatus);
+    }
+
 }

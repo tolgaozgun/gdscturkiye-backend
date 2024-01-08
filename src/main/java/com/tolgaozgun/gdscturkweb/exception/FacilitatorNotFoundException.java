@@ -1,7 +1,9 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class FacilitatorNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class FacilitatorNotFoundException extends BaseException {
     public FacilitatorNotFoundException() {
-        super("Facilitator not found!");
+        super("Facilitator not found!", HttpStatus.NOT_FOUND);
     }
 }

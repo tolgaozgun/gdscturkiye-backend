@@ -5,6 +5,7 @@ import com.tolgaozgun.gdscturkweb.dto.request.verification.EmailResendRequest;
 import com.tolgaozgun.gdscturkweb.dto.request.verification.EmailVerificationRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
 import com.tolgaozgun.gdscturkweb.dto.response.UserInvitationResponse;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.service.EmailVerificationService;
 import com.tolgaozgun.gdscturkweb.service.UserInvitationService;
@@ -27,9 +28,11 @@ public class UserInvitationController {
             System.out.println("inviteUserRequest: " + inviteUserRequest);
             UserInvitationResponse response = userInvitationService.createInvitationResponse(inviteUserRequest);
             return Response.create("Successfully invited user", HttpStatus.OK, response);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping( path = "cancel/{invitationId}")
@@ -37,10 +40,13 @@ public class UserInvitationController {
         try {
             UserInvitationResponse response = userInvitationService.cancelInvitation(invitationId);
             return Response.create("Successfully cancelled the invite", HttpStatus.OK, response);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
 
 

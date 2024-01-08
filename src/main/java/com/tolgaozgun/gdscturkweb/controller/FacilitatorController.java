@@ -8,6 +8,7 @@ import com.tolgaozgun.gdscturkweb.dto.request.register.FacilitatorRegisterReques
 import com.tolgaozgun.gdscturkweb.dto.response.FacilitatorDashboardResponse;
 import com.tolgaozgun.gdscturkweb.dto.response.LeadDashboardResponse;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.service.FacilitatorService;
 import com.tolgaozgun.gdscturkweb.service.LeadService;
@@ -31,9 +32,11 @@ public class FacilitatorController {
         try {
             List<FacilitatorDTO> facilitatorList = facilitatorService.getAllFacilitators();
             return Response.create("Gathered all facilitators", HttpStatus.OK, facilitatorList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -42,9 +45,11 @@ public class FacilitatorController {
         try {
             FacilitatorDashboardResponse facilitatorDashboardResponse = facilitatorService.getCurrentFacilitatorDashboard();
             return Response.create("Gathered current facilitator dashboard", HttpStatus.OK, facilitatorDashboardResponse);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping( path = "create")
@@ -52,9 +57,11 @@ public class FacilitatorController {
         try {
             FacilitatorDTO facilitatorDTO = facilitatorService.registerFacilitator(facilitatorRegisterRequest);
             return Response.create("Created facilitator", HttpStatus.OK, facilitatorDTO);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

@@ -1,12 +1,14 @@
 package com.tolgaozgun.gdscturkweb.exception;
 
-public class QuestionCategoryNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class QuestionCategoryNotFoundException extends BaseException {
     public QuestionCategoryNotFoundException() {
-        super("Question category not found!");
+        super("Question category not found!", HttpStatus.NOT_FOUND);
     }
 
     public QuestionCategoryNotFoundException(Long categoryId) {
-        super("Question cateogry with ID " + categoryId + " not found!");
+        super("Question cateogry with ID " + categoryId + " not found!", HttpStatus.NOT_FOUND);
     }
 
 }

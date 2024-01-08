@@ -4,6 +4,7 @@ import com.tolgaozgun.gdscturkweb.dto.LeadDTO;
 import com.tolgaozgun.gdscturkweb.dto.request.register.LeadRegisterRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.LeadDashboardResponse;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.model.University;
 import com.tolgaozgun.gdscturkweb.service.AuthService;
@@ -29,9 +30,11 @@ public class LeadController {
         try {
             List<LeadDTO> leadList = leadService.getAllLeads();
             return Response.create("Gathered all leads", HttpStatus.OK, leadList);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -40,9 +43,11 @@ public class LeadController {
         try {
             LeadDTO lead = leadService.registerLead(leadRegisterRequest);
             return Response.create("Created lead", HttpStatus.OK, lead);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
@@ -51,9 +56,11 @@ public class LeadController {
         try {
             LeadDashboardResponse leadDashboardResponse = leadService.getCurrentLeadDashboard();
             return Response.create("Gathered current lead dashboard", HttpStatus.OK, leadDashboardResponse);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

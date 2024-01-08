@@ -4,6 +4,7 @@ package com.tolgaozgun.gdscturkweb.controller;
 import com.tolgaozgun.gdscturkweb.dto.BuddyTeamDTO;
 import com.tolgaozgun.gdscturkweb.dto.request.buddyTeam.UpdateBuddyTeamRequest;
 import com.tolgaozgun.gdscturkweb.dto.response.Response;
+import com.tolgaozgun.gdscturkweb.exception.BaseException;
 import com.tolgaozgun.gdscturkweb.exception.ExceptionLogger;
 import com.tolgaozgun.gdscturkweb.service.BuddyTeamService;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,10 @@ public class BuddyTeamController {
         try {
             List<BuddyTeamDTO> buddyTeams = buddyTeamService.getAllBuddyTeams();
             return Response.create("Gathered all buddy teams", HttpStatus.OK, buddyTeams);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -37,9 +39,11 @@ public class BuddyTeamController {
         try {
             BuddyTeamDTO buddyTeam = buddyTeamService.getBuddyTeamDTOByCurrentUser();
             return Response.create("Gathered the buddy team", HttpStatus.OK, buddyTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "by-facilitator")
@@ -47,9 +51,11 @@ public class BuddyTeamController {
         try {
             BuddyTeamDTO buddyTeam = buddyTeamService.getBuddyTeamDTOByFacilitator();
             return Response.create("Gathered the buddy team", HttpStatus.OK, buddyTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(path = "update/{buddyTeamId}")
@@ -58,9 +64,11 @@ public class BuddyTeamController {
         try {
             BuddyTeamDTO buddyTeam = buddyTeamService.updateBuddyTeamById(buddyTeamId, updateBuddyTeamRequest);
             return Response.create("Updated the buddy team", HttpStatus.OK, buddyTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(path = "update/by-facilitator")
@@ -69,18 +77,22 @@ public class BuddyTeamController {
             System.out.println(updateBuddyTeamRequest);
             BuddyTeamDTO buddyTeam = buddyTeamService.updateBuddyTeamByFacilitator(updateBuddyTeamRequest);
             return Response.create("Updated the buddy team", HttpStatus.OK, buddyTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @PostMapping(path = "update/by-lead")
     public ResponseEntity<Object> updateBuddyTeamByLead(@RequestBody UpdateBuddyTeamRequest updateBuddyTeamRequest) {
         try {
             BuddyTeamDTO buddyTeam = buddyTeamService.updateBuddyTeamByLead(updateBuddyTeamRequest);
             return Response.create("Updated the buddy team", HttpStatus.OK, buddyTeam);
+        } catch (BaseException baseException) {
+            return Response.create(baseException);
         } catch (Exception e) {
-            // HTTP 500
-            return Response.create(ExceptionLogger.log(e), HttpStatus.OK);        }
+            return Response.create(ExceptionLogger.log(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
